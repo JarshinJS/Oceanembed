@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OceanEmbed — Subsurface Ocean Temperature Reconstruction</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-badge">SIH 2026 • PS ID: 26066</div>
+      <h1 class="brand-title">OCEANEMBED</h1>
+      <p class="brand-subtitle">
+        Satellite Embedding-Based Deep Learning Framework for Subsurface Ocean Temperature Reconstruction
+      </p>
+    </div>
+    <div class="header-right">
+      <div class="meta-chip">
+        <span class="chip-label">Domain</span>
+        <span class="chip-val">Bay of Bengal (12.1–17.9°N, 85.1–92.9°E)</span>
+      </div>
+      <div class="meta-chip">
+        <span class="chip-label">Grid</span>
+        <span class="chip-val">0.25° • 24 × 32 cells</span>
+      </div>
+      <div class="meta-chip">
+        <span class="chip-label">Depths</span>
+        <span class="chip-val">15 Canonical Levels (0–1000m)</span>
+      </div>
+      <div class="meta-chip status-chip" id="system-status-chip">
+        <span class="status-dot"></span>
+        <span class="chip-val" id="model-status-text">OceanEmbed v1-Local (123k)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- WORKSPACE CONTAINER -->
+  <main class="main-layout">
+
+    <!-- CONTROL BAR -->
+    <section class="control-bar card">
+      <div class="control-group date-control-group">
+        <div class="control-label-row">
+          <label for="date-select" class="control-label">Observation Date</label>
+          <span class="split-pill" id="split-pill">TEST PERIOD</span>
+          <span class="argo-pill hidden" id="argo-pill">● ARGO IN SITU FLOATS AVAILABLE</span>
+        </div>
+        <div class="date-inputs">
+          <select id="date-select" class="custom-select"></select>
+          <input type="range" id="date-slider" class="custom-slider" min="0" max="90" value="79" step="1">
+        </div>
+      </div>
+
+      <div class="control-group depth-control-group">
+        <div class="control-label-row">
+          <label class="control-label">Reconstruction Depth: <span id="depth-display" class="highlight-depth">100 m</span></label>
+          <span class="regime-pill" id="regime-pill">THERMOCLINE (50–200m)</span>
+        </div>
+        <div class="depth-btn-group" id="depth-btn-group">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="control-action">
+        <button id="run-inference-btn" class="btn-primary">
+          <span class="btn-icon">⚡</span>
+          <span class="btn-text">Run OceanEmbed</span>
+        </button>
+        <div class="inference-stats" id="inference-stats">
+          <span class="stats-item" id="latency-val">Latency: ~46 ms</span>
+          <span class="stats-item" id="cache-val">Cached</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCIENTIFIC WORKSPACE (MAP & PROFILE) -->
+    <section class="grid-workspace">
+
+      <!-- LEFT COLUMN: 2D SPATIAL MAPS -->
+      <div class="col-spatial">
+
+        <!-- PRIMARY SUBSURFACE MAP -->
+        <div class="card spatial-card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Predicted Subsurface Temperature</h2>
+              <p class="card-subtitle" id="map-subtitle">Depth: 100 m • Date: 2020-03-20 • 24 × 32 Grid (0.25°)</p>
+            </div>
+            <div class="map-badges">
+              <span class="badge badge-info" id="cell-probe-badge">Probe: 14.62°N, 86.88°E</span>
+              <span class="badge badge-temp" id="cell-temp-badge">24.12 °C</span>
+            </div>
+          </div>
+
+          <div class="map-viewport-wrapper">
+            <div class="canvas-container">
+              <canvas id="subsurface-canvas" width="640" height="480"></canvas>
+              <div id="map-crosshair" class="map-crosshair hidden"></div>
+              <div id="map-tooltip" class="map-tooltip hidden"></div>
+            </div>
+
+            <!-- COLORBAR -->
+            <div class="colorbar-container">
+              <span class="cbar-label cbar-min" id="cbar-min">12.0 °C</span>
+              <div class="cbar-gradient" id="cbar-gradient"></div>
+              <span class="cbar-label cbar-max" id="cbar-max">31.0 °C</span>
+              <span class="cbar-title">Temperature (°C)</span>
+            </div>
+          </div>
+
+          <div class="map-footer">
+            <div class="map-legend">
+              <span class="legend-item"><span class="legend-color legend-ocean"></span> Ocean Grid Cell</span>
+              <span class="legend-item"><span class="legend-color legend-land"></span> Masked Land / Bathymetry</span>
+              <span class="legend-item"><span class="legend-symbol">◈</span> Collocated ARGO Float</span>
+            </div>
+            <div class="map-hint">Click any ocean cell to probe vertical profile • Click ARGO marker ◈ to inspect float sounding</div>
+          </div>
+        </div>
+
+        <!-- 7 MULTIMODAL SURFACE OBSERVATIONS -->
+        <div class="card surface-card">
+          <div class="card-header surface-header">
+            <div>
+              <h3 class="card-title-sm">Multimodal Surface Satellite Inputs (7 Channels)</h3>
+              <p class="card-subtitle-sm">Input tensor [1, 7, 24, 32] feeding specialized feature branches</p>
+            </div>
+            <div class="surface-stats" id="surface-meta-stats">
+              Coverage: <span id="surface-coverage-val" class="highlight-val">100%</span>
+            </div>
+          </div>
+
+          <div class="surface-tabs" id="surface-tabs">
+            <button class="tab-btn active" data-channel="sst">SST (°C)</button>
+            <button class="tab-btn" data-channel="sss">SSS (PSU)</button>
+            <button class="tab-btn" data-channel="ssh">SSH / ADT (m)</button>
+            <button class="tab-btn" data-channel="u_current">Current U (m/s)</button>
+            <button class="tab-btn" data-channel="v_current">Current V (m/s)</button>
+            <button class="tab-btn" data-channel="u_wind">Wind U (m/s)</button>
+            <button class="tab-btn" data-channel="v_wind">Wind V (m/s)</button>
+          </div>
+
+          <div class="surface-canvas-container">
+            <canvas id="surface-canvas" width="640" height="220"></canvas>
+            <div class="surface-cbar-row">
+              <span id="surface-cbar-min" class="cbar-label-sm">--</span>
+              <div class="cbar-gradient-sm" id="surface-cbar-gradient"></div>
+              <span id="surface-cbar-max" class="cbar-label-sm">--</span>
+              <span id="surface-cbar-units" class="cbar-units-sm">°C</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: VERTICAL PROFILE & VALIDATION -->
+      <div class="col-profile">
+
+        <!-- VERTICAL TEMPERATURE PROFILE -->
+        <div class="card profile-card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Subsurface Temperature Profile</h2>
+              <p class="card-subtitle" id="profile-subtitle">Location: 14.62°N, 86.88°E • Date: 2020-03-20</p>
+            </div>
+            <div id="argo-collocation-status" class="argo-collocation-tag">
+              Independent ARGO Collocated
+            </div>
+          </div>
+
+          <div class="profile-canvas-wrapper">
+            <canvas id="profile-canvas" width="480" height="520"></canvas>
+            <div id="profile-tooltip" class="profile-tooltip hidden"></div>
+          </div>
+
+          <!-- SERIES LEGEND -->
+          <div class="profile-legend">
+            <div class="legend-row">
+              <span class="legend-badge legend-oceanembed"></span>
+              <span class="legend-text"><strong>OceanEmbed v1-Local</strong> (Model Prediction)</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-badge legend-climatology"></span>
+              <span class="legend-text"><strong>Training Spatial Climatology</strong> (Residual Base)</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-badge legend-glorys"></span>
+              <span class="legend-text"><strong>GLORYS reanalysis-derived reference</strong></span>
+            </div>
+            <div class="legend-row" id="argo-legend-row">
+              <span class="legend-badge legend-argo"></span>
+              <span class="legend-text"><strong>Independent ARGO observational reference</strong></span>
+            </div>
+          </div>
+          <p class="reference-disclaimer">
+            * Note: GLORYS is a reanalysis-derived data-assimilative product, not un-gridded ground truth. ARGO floats provide independent in situ physical validation.
+          </p>
+        </div>
+
+        <!-- VALIDATION BENCHMARKS CARD -->
+        <div class="card validation-card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title-sm">Independent ARGO Validation (Gate A4.3)</h3>
+              <p class="card-subtitle-sm">Held-out test window: 16–31 March 2020 • Bay of Bengal</p>
+            </div>
+            <span class="verified-pill">VERIFIED STATISTICAL FREEZE</span>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-box highlight-box">
+              <div class="metric-lbl">Thermocline RMSE (50–200m)</div>
+              <div class="metric-val text-cyan">0.845 °C</div>
+              <div class="metric-sub">vs Climatology 1.283 °C (<span class="text-green">-34.16%</span>)</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-lbl">Overall Column RMSE</div>
+              <div class="metric-val">0.812 °C</div>
+              <div class="metric-sub">r = 0.9943 • MAE = 0.543 °C</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-lbl">In Situ ARGO Floats</div>
+              <div class="metric-val">34 Profiles</div>
+              <div class="metric-sub">14 unique WMO float platforms, treated as conservative cluster units</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-lbl">Platform Exact Permutation</div>
+              <div class="metric-val text-green">p = 0.001709</div>
+              <div class="metric-sub">95% Cluster CI: [-0.346, -0.112] °C</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TRUST, DATA QUALITY & SCIENTIFIC LIMITATIONS -->
+    <section class="trust-grid">
+
+      <!-- TRUST & REPRODUCIBILITY CARD -->
+      <div class="card trust-card">
+        <div class="card-header">
+          <h3 class="card-title-sm">Model Integrity & Trust Audit</h3>
+          <span class="badge badge-audit">100% REPRODUCIBLE</span>
+        </div>
+        <div class="trust-spec-list">
+          <div class="trust-item">
+            <span class="trust-key">Frozen Architecture:</span>
+            <span class="trust-val">OceanEmbed v1-Local (Residual + Depth Conditioning)</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-key">Trainable Parameters:</span>
+            <span class="trust-val">123,345 (Deterministic Seed 42)</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-key">Inference Latency:</span>
+            <span class="trust-val">~46 ms CPU benchmark (Real-time capable)</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-key">Satellite Inputs:</span>
+            <span class="trust-val">7 Channels (SST, SSS, SSH, Currents U/V, Winds U/V)</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-key">Subsurface Output:</span>
+            <span class="trust-val">15 Depths (0, 5, 10, 20, 30, 50, 75, 100, 125, 150, 200, 300, 500, 700, 1000m)</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-key">Land Mask Integrity:</span>
+            <span class="trust-val">True source validity masks preserved • No fabricated data</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCIENTIFIC LIMITATIONS PANEL (ACCORDION) -->
+      <div class="card limitations-card">
+        <details class="limitations-details" open>
+          <summary class="limitations-summary">
+            <span class="card-title-sm">Current Scientific Limitations & Operational Boundaries</span>
+            <span class="summary-toggle-icon">▼</span>
+          </summary>
+          <div class="limitations-content">
+            <ul>
+              <li><strong>Regional & Temporal Window:</strong> Model validation is strictly bounded to the Central Bay of Bengal (Q1 2020). Multi-year, pan-Indian Ocean, and multi-season generalization is ongoing research.</li>
+              <li><strong>Surface Regime Cold Bias:</strong> In the uppermost 0–20m layer, a systematic cold bias of -0.596 °C remains relative to in situ floats.</li>
+              <li><strong>Deep Ocean Regimes (>200m):</strong> Performance in the deep ocean converges toward climatology without uniform variance reduction due to weak surface-depth thermal coupling.</li>
+              <li><strong>GLORYS Reference Character:</strong> GLORYS12V1 is a numerical reanalysis model assimilating altimetry and SST, not absolute ground truth.</li>
+              <li><strong>Operational Boundary:</strong> This system is an interactive Proof-of-Concept research prototype. It does NOT replace operational numerical ocean forecasting models and does NOT provide cyclone trajectory prediction.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    <div>OceanEmbed SIH 2026 • Problem Statement ID: 26066 • Proof-of-Concept Integration</div>
+    <div class="footer-links">
+      <span>Frozen Champion: OceanEmbed v1-Local</span>
+      <span>•</span>
+      <span>ARGO GDAC Collocated Validation</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

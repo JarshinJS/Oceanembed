@@ -1,0 +1,76 @@
+# ==============================================================================
+# OceanEmbed .gitignore
+# Problem Statement ID: 26066 — SIH 2026
+# ==============================================================================
+
+# Python environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python bytecode & test caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE & editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Machine Learning model checkpoints & weights
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+*.bin
+
+# Large scientific / geospatial data formats
+*.nc
+*.nc4
+*.h5
+*.hdf5
+*.zarr
+*.grib
+*.grb
+*.tif
+*.tiff
+*.npy
+*.npz
+*.hnie5nlz
+
+# Primary dataset directories
+Dataset/
+data/*
+!data/.gitkeep
+
+# Temporary, cache & log files
+*.tmp
+*.log
+*.cache
+*.bak
+dist/
+build/
+*.egg-info/
+
+# Credentials & environment secrets
+.env
+.env.*
+*.key
+*.pem
+credentials.*
+secrets.*

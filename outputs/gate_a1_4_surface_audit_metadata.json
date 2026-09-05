@@ -1,0 +1,183 @@
+{
+  "audit_timestamp": "2026-09-04T20:08:11.000815",
+  "target_domain": {
+    "name": "Central Bay of Bengal Pilot Box",
+    "lat_bounds": [
+      12.0,
+      18.0
+    ],
+    "lon_bounds": [
+      85.0,
+      93.0
+    ],
+    "target_resolution_deg": 0.25
+  },
+  "target_temporal_window": {
+    "start_date": "2020-01-01",
+    "end_date": "2020-01-30",
+    "total_days": 30,
+    "frequency": "Daily"
+  },
+  "channel_audit": {
+    "sst": {
+      "channel_index": 0,
+      "variable_code": "sst",
+      "variable_name": "Sea Surface Temperature",
+      "primary_source": "OSTIA (Operational SST and Sea Ice Analysis)",
+      "primary_dataset_id": "cmems_SST_GLO_SST_L4_REP_OBSERVATIONS_010_011",
+      "primary_units": "Kelvin (K)",
+      "target_units": "degrees_Celsius (\u00b0C)",
+      "regridding_required": true,
+      "daily_aggregation_required": false,
+      "coordinate_transform": "Kelvin to Celsius (T_C = T_K - 273.15)",
+      "primary_status": "BLOCKED",
+      "fallback_status": "AVAILABLE",
+      "active_mode_status": "BLOCKED",
+      "blocking_reasons": [
+        "Temporal discordance: Local OSTIA file contains timestamp 2026-03-31, which does not overlap target pilot window (2020-01-01 to 2020-01-30)."
+      ],
+      "remediation_command": "copernicusmarine subset --dataset-id cmems_SST_GLO_SST_L4_REP_OBSERVATIONS_010_011 --variable analysed_sst --start-datetime 2020-01-01T00:00:00 --end-datetime 2020-01-30T23:59:59 --minimum-longitude 85.0 --maximum-longitude 93.0 --minimum-latitude 12.0 --maximum-latitude 18.0 --output-directory Dataset/satellite_pilot --output-filename ostia_sst_pilot_30d.nc",
+      "primary_available_dates": [
+        "2026-03-31",
+        "2026-03-31"
+      ],
+      "fallback_details": "GLORYS12V1 thetao at depth=0 m (0.494 m). Daily 2020-01-01 to 2020-01-30."
+    },
+    "sss": {
+      "channel_index": 1,
+      "variable_code": "sss",
+      "variable_name": "Sea Surface Salinity",
+      "primary_source": "SMAP / SMOS Multi-Observation L4 SSS",
+      "primary_dataset_id": "cmems_obs-mob_glo_phy-sss_my_multi_P1D",
+      "primary_units": "1e-3 (PSU)",
+      "target_units": "PSU (Practical Salinity Units)",
+      "regridding_required": true,
+      "daily_aggregation_required": false,
+      "coordinate_transform": "None (direct identity mapping)",
+      "primary_status": "BLOCKED",
+      "fallback_status": "AVAILABLE",
+      "active_mode_status": "BLOCKED",
+      "blocking_reasons": [
+        "Temporal discordance: Local Multi-Obs SSS file contains timestamp 2024-12-15, which does not overlap target pilot window (2020-01-01 to 2020-01-30)."
+      ],
+      "remediation_command": "copernicusmarine subset --dataset-id cmems_obs-mob_glo_phy-sss_my_multi_P1D --variable sos --start-datetime 2020-01-01T00:00:00 --end-datetime 2020-01-30T23:59:59 --minimum-longitude 85.0 --maximum-longitude 93.0 --minimum-latitude 12.0 --maximum-latitude 18.0 --output-directory Dataset/satellite_pilot --output-filename multi_obs_sss_pilot_30d.nc",
+      "primary_available_dates": [
+        "2024-12-15",
+        "2024-12-15"
+      ],
+      "fallback_details": "GLORYS12V1 so at depth=0 m (0.494 m). Daily 2020-01-01 to 2020-01-30."
+    },
+    "ssh": {
+      "channel_index": 2,
+      "variable_code": "ssh",
+      "variable_name": "Sea Surface Height / Sea Level Anomaly",
+      "primary_source": "DUACS Multi-Mission Altimetry L4",
+      "primary_dataset_id": "c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D",
+      "primary_units": "m",
+      "target_units": "m (meters)",
+      "regridding_required": false,
+      "daily_aggregation_required": false,
+      "coordinate_transform": "None (grid aligns at 0.25\u00b0)",
+      "primary_status": "BLOCKED",
+      "fallback_status": "AVAILABLE",
+      "active_mode_status": "BLOCKED",
+      "blocking_reasons": [
+        "Temporal discordance: Local DUACS file contains timestamp 2026-01-16, which does not overlap target pilot window (2020-01-01 to 2020-01-30)."
+      ],
+      "remediation_command": "copernicusmarine subset --dataset-id c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D --variable adt --variable sla --start-datetime 2020-01-01T00:00:00 --end-datetime 2020-01-30T23:59:59 --minimum-longitude 85.0 --maximum-longitude 93.0 --minimum-latitude 12.0 --maximum-latitude 18.0 --output-directory Dataset/satellite_pilot --output-filename duacs_ssh_pilot_30d.nc",
+      "primary_available_dates": [
+        "2026-01-16",
+        "2026-01-16"
+      ],
+      "fallback_details": "GLORYS12V1 zos (sea surface height). Daily 2020-01-01 to 2020-01-30."
+    },
+    "u_current": {
+      "channel_index": 3,
+      "variable_code": "u_current",
+      "variable_name": "Surface Current U (Zonal)",
+      "primary_source": "OSCAR Surface Currents Version 2.0",
+      "primary_dataset_id": "OSCAR_L4_OC_FINAL_V2.0",
+      "primary_units": "m/s",
+      "target_units": "m/s (eastward velocity)",
+      "regridding_required": false,
+      "daily_aggregation_required": false,
+      "coordinate_transform": "Longitude wrapping: 0..360\u00b0 to -180..180\u00b0 if needed (85..93\u00b0E is invariant)",
+      "primary_status": "BLOCKED",
+      "fallback_status": "AVAILABLE",
+      "active_mode_status": "BLOCKED",
+      "blocking_reasons": [
+        "OSCAR L4 Surface Currents dataset (NASA PO.DAAC OSCAR_L4_OC_FINAL_V2.0) is not downloaded. Requires NASA Earthdata authentication."
+      ],
+      "remediation_command": "NASA Earthdata PO.DAAC download for OSCAR_L4_OC_FINAL_V2.0 over 2020-01-01 to 2020-01-30 bounded to 12-18N, 85-93E.",
+      "fallback_details": "GLORYS12V1 uo at depth=0 m (0.494 m). Daily 2020-01-01 to 2020-01-30."
+    },
+    "v_current": {
+      "channel_index": 4,
+      "variable_code": "v_current",
+      "variable_name": "Surface Current V (Meridional)",
+      "primary_source": "OSCAR Surface Currents Version 2.0",
+      "primary_dataset_id": "OSCAR_L4_OC_FINAL_V2.0",
+      "primary_units": "m/s",
+      "target_units": "m/s (northward velocity)",
+      "regridding_required": false,
+      "daily_aggregation_required": false,
+      "coordinate_transform": "None",
+      "primary_status": "BLOCKED",
+      "fallback_status": "AVAILABLE",
+      "active_mode_status": "BLOCKED",
+      "blocking_reasons": [
+        "OSCAR L4 Surface Currents dataset (NASA PO.DAAC OSCAR_L4_OC_FINAL_V2.0) is not downloaded. Requires NASA Earthdata authentication."
+      ],
+      "remediation_command": "NASA Earthdata PO.DAAC download for OSCAR_L4_OC_FINAL_V2.0 over 2020-01-01 to 2020-01-30 bounded to 12-18N, 85-93E.",
+      "fallback_details": "GLORYS12V1 vo at depth=0 m (0.494 m). Daily 2020-01-01 to 2020-01-30."
+    },
+    "u_wind": {
+      "channel_index": 5,
+      "variable_code": "u_wind",
+      "variable_name": "Surface Wind U (Zonal 10m)",
+      "primary_source": "CCMP V3.1 / ASCAT-L2 Coastal",
+      "primary_dataset_id": "CCMP_V3.1_L4",
+      "primary_units": "m/s",
+      "target_units": "m/s (10m zonal wind vector)",
+      "regridding_required": true,
+      "daily_aggregation_required": true,
+      "coordinate_transform": "None for CCMP; Geospatial swath binning for ASCAT L2",
+      "primary_status": "BLOCKED",
+      "fallback_status": "BLOCKED",
+      "active_mode_status": "BLOCKED",
+      "blocking_reasons": [
+        "ASCAT L2 Coastal swath granules cover only ~1 day (2020-01-01, 16 granules). Remaining 29 daily periods are missing. Data is ungridded swath (L2) requiring spatial binning. CCMP V3.1 L4 gap-free product is not downloaded."
+      ],
+      "remediation_command": "Acquire CCMP V3.1 gridded daily 0.25\u00b0 wind vectors from NASA PO.DAAC or ECMWF ERA5 10m wind reanalysis fallback (u10, v10) via CDS API.",
+      "fallback_details": "GLORYS12V1 is an ocean circulation reanalysis and DOES NOT contain atmospheric 10m wind variables. Reanalysis fallback requires external ECMWF ERA5 winds."
+    },
+    "v_wind": {
+      "channel_index": 6,
+      "variable_code": "v_wind",
+      "variable_name": "Surface Wind V (Meridional 10m)",
+      "primary_source": "CCMP V3.1 / ASCAT-L2 Coastal",
+      "primary_dataset_id": "CCMP_V3.1_L4",
+      "primary_units": "m/s",
+      "target_units": "m/s (10m meridional wind vector)",
+      "regridding_required": true,
+      "daily_aggregation_required": true,
+      "coordinate_transform": "None for CCMP; Geospatial swath binning for ASCAT L2",
+      "primary_status": "BLOCKED",
+      "fallback_status": "BLOCKED",
+      "active_mode_status": "BLOCKED",
+      "blocking_reasons": [
+        "ASCAT L2 Coastal swath granules cover only ~1 day (2020-01-01, 16 granules). Remaining 29 daily periods are missing. Data is ungridded swath (L2) requiring spatial binning. CCMP V3.1 L4 gap-free product is not downloaded."
+      ],
+      "remediation_command": "Acquire CCMP V3.1 gridded daily 0.25\u00b0 wind vectors from NASA PO.DAAC or ECMWF ERA5 10m wind reanalysis fallback (u10, v10) via CDS API.",
+      "fallback_details": "GLORYS12V1 is an ocean circulation reanalysis and DOES NOT contain atmospheric 10m wind variables. Reanalysis fallback requires external ECMWF ERA5 winds."
+    }
+  },
+  "summary": {
+    "total_channels": 7,
+    "primary_satellite_available": 0,
+    "primary_satellite_blocked": 7,
+    "fallback_reanalysis_available": 5,
+    "fallback_reanalysis_blocked": 2,
+    "scientific_status": "BLOCKED for Pure Satellite Input (SATELLITE_OBSERVATION mode) \u2014 0/7 channels synchronized; PARTIALLY AVAILABLE under REANALYSIS_FALLBACK mode (5/7 ocean channels available; 2/7 wind channels strictly BLOCKED)."
+  }
+}

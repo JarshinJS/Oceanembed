@@ -1,0 +1,1147 @@
+{
+  "audit_timestamp": "2026-09-04T15:48:00+05:30",
+  "status": "BLOCKED \u2014 DATA ISSUE FOUND",
+  "total_netcdf_files_found": 20,
+  "file_locations": {
+    "root_datasets": [
+      "Dataset/cmems_mod_glo_phy_my_0.083deg_P1D-m_1788514642488.nc",
+      "Dataset/METOFFICE-GLO-SST-L4-REP-OBS-SST_1788514360579.nc",
+      "Dataset/cmems_obs-mob_glo_phy-sss_my_multi_P1D_1788514338421.nc",
+      "Dataset/c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D_1788514168280.nc"
+    ],
+    "ascat_swath_granules": "Dataset/ASCAT/*.nc (16 files, 52.14 MB)"
+  },
+  "inspected_products": {
+    "GLORYS": {
+      "filepath": "Dataset/cmems_mod_glo_phy_my_0.083deg_P1D-m_1788514642488.nc",
+      "filename": "cmems_mod_glo_phy_my_0.083deg_P1D-m_1788514642488.nc",
+      "filesize_bytes": 388027930,
+      "filesize_mb": 370.05,
+      "attrs": {
+        "Conventions": "CF-1.11",
+        "title": "daily mean fields from Global Ocean Physics Analysis and Forecast updated Daily",
+        "institution": "MERCATOR OCEAN",
+        "source": "MERCATOR GLORYS12V1",
+        "history": "2023/06/01 16:20:05 MERCATOR OCEAN Netcdf creation",
+        "references": "http://www.mercator-ocean.fr",
+        "comment": "CMEMS product",
+        "subset:source": "ARCO data downloaded from the Marine Data Store using the MyOcean Data Portal",
+        "subset:productId": "GLOBAL_MULTIYEAR_PHY_001_030",
+        "subset:datasetId": "cmems_mod_glo_phy_my_0.083deg_P1D-m_202311",
+        "subset:date": "2026-09-04T09:37:22.490Z"
+      },
+      "dims": {
+        "time": 1,
+        "latitude": 2041,
+        "longitude": 4320,
+        "depth": 1
+      },
+      "coords": {
+        "time": {
+          "shape": [
+            1
+          ],
+          "dtype": "datetime64[ns]",
+          "ndim": 1,
+          "min": "2026-06-23T00:00:00.000000000",
+          "max": "2026-06-23T00:00:00.000000000",
+          "values": [
+            "2026-06-23T00:00:00.000000000"
+          ]
+        },
+        "latitude": {
+          "shape": [
+            2041
+          ],
+          "dtype": "float32",
+          "ndim": 1,
+          "min": -80.0,
+          "max": 90.0,
+          "spacing_mean": 0.0833333358168602,
+          "is_ascending": true
+        },
+        "longitude": {
+          "shape": [
+            4320
+          ],
+          "dtype": "float32",
+          "ndim": 1,
+          "min": -180.0,
+          "max": 179.91668701171875,
+          "spacing_mean": 0.0833333358168602,
+          "is_ascending": true
+        },
+        "depth": {
+          "shape": [
+            1
+          ],
+          "dtype": "float32",
+          "ndim": 1,
+          "min": 0.49402499198913574,
+          "max": 0.49402499198913574,
+          "spacing_mean": null,
+          "is_ascending": true
+        }
+      },
+      "data_vars": {
+        "bottomT": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            2041,
+            4320
+          ],
+          "dtype": "float32",
+          "units": "degrees_C",
+          "long_name": "Sea floor potential temperature",
+          "standard_name": "sea_water_potential_temperature_at_sea_floor",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 8817120,
+          "valid_values": 6146048,
+          "nan_count": 2671072,
+          "pct_missing": 30.29,
+          "min_valid": -2.99853515625,
+          "max_valid": 37.730491638183594,
+          "mean": 1.8226587772369385,
+          "std": 4.376284599304199
+        },
+        "mlotst": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            2041,
+            4320
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "long_name": "Density ocean mixed layer thickness",
+          "standard_name": "ocean_mixed_layer_thickness_defined_by_sigma_theta",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 8817120,
+          "valid_values": 6146048,
+          "nan_count": 2671072,
+          "pct_missing": 30.29,
+          "min_valid": 0.0,
+          "max_valid": 713.0650024414062,
+          "mean": 48.14336395263672,
+          "std": 45.54088592529297
+        },
+        "siconc": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            2041,
+            4320
+          ],
+          "dtype": "float32",
+          "units": "1",
+          "long_name": "Ice concentration",
+          "standard_name": "sea_ice_area_fraction",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 8817120,
+          "valid_values": 1310343,
+          "nan_count": 7506777,
+          "pct_missing": 85.14,
+          "min_valid": 0.0,
+          "max_valid": 1.0493789911270142,
+          "mean": 0.7355232834815979,
+          "std": 0.31830474734306335
+        },
+        "sithick": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            2041,
+            4320
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "long_name": "Sea ice thickness",
+          "standard_name": "sea_ice_thickness",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 8817120,
+          "valid_values": 1310345,
+          "nan_count": 7506775,
+          "pct_missing": 85.14,
+          "min_valid": 0.0,
+          "max_valid": 3.7507247924804688,
+          "mean": 1.2042723894119263,
+          "std": 0.6890043616294861
+        },
+        "so": {
+          "dims": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            1,
+            2041,
+            4320
+          ],
+          "dtype": "float32",
+          "units": "1e-3",
+          "long_name": "Salinity",
+          "standard_name": "sea_water_salinity",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 8817120,
+          "valid_values": 6146048,
+          "nan_count": 2671072,
+          "pct_missing": 30.29,
+          "min_valid": 0.0015259254723787308,
+          "max_valid": 42.50923156738281,
+          "mean": 33.93344497680664,
+          "std": 2.602118492126465
+        },
+        "thetao": {
+          "dims": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            1,
+            2041,
+            4320
+          ],
+          "dtype": "float32",
+          "units": "degrees_C",
+          "long_name": "Temperature",
+          "standard_name": "sea_water_potential_temperature",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 8817120,
+          "valid_values": 6146048,
+          "nan_count": 2671072,
+          "pct_missing": 30.29,
+          "min_valid": -2.7304604053497314,
+          "max_valid": 34.58610916137695,
+          "mean": 14.388861656188965,
+          "std": 11.805877685546875
+        },
+        "uo": {
+          "dims": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            1,
+            2041,
+            4320
+          ],
+          "dtype": "float32",
+          "units": "m s-1",
+          "long_name": "Eastward velocity",
+          "standard_name": "eastward_sea_water_velocity",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 8817120,
+          "valid_values": 6145586,
+          "nan_count": 2671534,
+          "pct_missing": 30.3,
+          "min_valid": -1.955626130104065,
+          "max_valid": 2.553178548812866,
+          "mean": 0.012803479097783566,
+          "std": 0.18728353083133698
+        },
+        "usi": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            2041,
+            4320
+          ],
+          "dtype": "float32",
+          "units": "m s-1",
+          "long_name": "Sea ice eastward velocity",
+          "standard_name": "eastward_sea_ice_velocity",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 8817120,
+          "valid_values": 1154419,
+          "nan_count": 7662701,
+          "pct_missing": 86.91,
+          "min_valid": -0.5688344836235046,
+          "max_valid": 0.9883724451065063,
+          "mean": 0.03323005884885788,
+          "std": 0.10434342920780182
+        },
+        "vo": {
+          "dims": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            1,
+            2041,
+            4320
+          ],
+          "dtype": "float32",
+          "units": "m s-1",
+          "long_name": "Northward velocity",
+          "standard_name": "northward_sea_water_velocity",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 8817120,
+          "valid_values": 6145586,
+          "nan_count": 2671534,
+          "pct_missing": 30.3,
+          "min_valid": -2.4311044216156006,
+          "max_valid": 2.1198155879974365,
+          "mean": 0.005613979883491993,
+          "std": 0.14452680945396423
+        },
+        "vsi": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            2041,
+            4320
+          ],
+          "dtype": "float32",
+          "units": "m s-1",
+          "long_name": "Sea ice northward velocity",
+          "standard_name": "northward_sea_ice_velocity",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 8817120,
+          "valid_values": 1154424,
+          "nan_count": 7662696,
+          "pct_missing": 86.91,
+          "min_valid": -0.7977538108825684,
+          "max_valid": 0.7013458609580994,
+          "mean": 0.0019324877066537738,
+          "std": 0.09085333347320557
+        },
+        "zos": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            2041,
+            4320
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "long_name": "Sea surface height",
+          "standard_name": "sea_surface_height_above_geoid",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 8817120,
+          "valid_values": 6146048,
+          "nan_count": 2671072,
+          "pct_missing": 30.29,
+          "min_valid": -1.9965208768844604,
+          "max_valid": 1.6983550786972046,
+          "mean": -0.1134488582611084,
+          "std": 0.7295547723770142
+        }
+      }
+    },
+    "OSTIA_SST": {
+      "filepath": "Dataset/METOFFICE-GLO-SST-L4-REP-OBS-SST_1788514360579.nc",
+      "filename": "METOFFICE-GLO-SST-L4-REP-OBS-SST_1788514360579.nc",
+      "filesize_bytes": 414784428,
+      "filesize_mb": 395.57,
+      "attrs": {
+        "Conventions": "CF-1.11",
+        "title": "Global SST & Sea Ice Analysis, L4 OSTIA, 0.05 deg daily (METOFFICE-GLO-SST-L4-REP-OBS-SST-V2)",
+        "institution": "UKMO",
+        "source": "AMSR2-REMSS-L2P-v2.0, AMSRE-REMSS-L2P-v2.0, GOES<13,16>-OSISAF-L3C-v2.0, SEVIRI-OSISAF-L3C-v2.0, SLSTRA-C3S-L3C-v2.0, ATSR<1,2>-ESACCI-L3U-v2.0, AATSR-ESACCI-L3U-v2.0, AVHRR<07,09,11,12,14,15,16,17,18,19,MTA>-ESACCI-L3U-v2.0, GMI-REMSS-L3U-v2.0, VIIRS<NPP,N20>-OSPO-L3U-v2.0, OSISAF_ICE",
+        "history": "Created from sst.nc; obs_anal.nc; seaice.nc",
+        "references": "Donlon, C.J., Martin, M., Stark, J.D., Roberts-Jones, J., Fiedler, E., Wimmer, W., 2011. The Operational Sea Surface Temperature and Sea Ice Analysis (OSTIA). Remote Sensing of the Environment",
+        "comment": "WARNING Some applications are unable to properly handle signed byte values. If values are encountered > 127, please subtract 256 from this reported value",
+        "subset:source": "ARCO data downloaded from the Marine Data Store using the MyOcean Data Portal",
+        "subset:productId": "SST_GLO_SST_L4_REP_OBSERVATIONS_010_011",
+        "subset:datasetId": "METOFFICE-GLO-SST-L4-REP-OBS-SST_202003",
+        "subset:date": "2026-09-04T09:32:40.581Z"
+      },
+      "dims": {
+        "time": 1,
+        "latitude": 3600,
+        "longitude": 7200
+      },
+      "coords": {
+        "time": {
+          "shape": [
+            1
+          ],
+          "dtype": "datetime64[ns]",
+          "ndim": 1,
+          "min": "2026-03-31T00:00:00.000000000",
+          "max": "2026-03-31T00:00:00.000000000",
+          "values": [
+            "2026-03-31T00:00:00.000000000"
+          ]
+        },
+        "latitude": {
+          "shape": [
+            3600
+          ],
+          "dtype": "float32",
+          "ndim": 1,
+          "min": -89.9749984741211,
+          "max": 89.9749984741211,
+          "spacing_mean": 0.05000000447034836,
+          "is_ascending": true
+        },
+        "longitude": {
+          "shape": [
+            7200
+          ],
+          "dtype": "float32",
+          "ndim": 1,
+          "min": -179.97500610351562,
+          "max": 179.97500610351562,
+          "spacing_mean": 0.05000000074505806,
+          "is_ascending": true
+        }
+      },
+      "data_vars": {
+        "analysed_sst": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            3600,
+            7200
+          ],
+          "dtype": "float32",
+          "units": "kelvin",
+          "long_name": "Analysed sea surface temperature",
+          "standard_name": "sea_surface_foundation_temperature",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 25920000,
+          "valid_values": 17241665,
+          "nan_count": 8678335,
+          "pct_missing": 33.48,
+          "min_valid": 271.1499938964844,
+          "max_valid": 305.6399841308594,
+          "mean": 287.28997802734375,
+          "std": 11.97209644317627
+        },
+        "analysis_error": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            3600,
+            7200
+          ],
+          "dtype": "float32",
+          "units": "kelvin",
+          "long_name": "Estimated error standard deviation of analysed sst",
+          "standard_name": "sea_surface_foundation_temperature standard_error",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 25920000,
+          "valid_values": 17241665,
+          "nan_count": 8678335,
+          "pct_missing": 33.48,
+          "min_valid": 0.09999999403953552,
+          "max_valid": 3.669999837875366,
+          "mean": 0.3583835959434509,
+          "std": 0.30335715413093567
+        },
+        "mask": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            3600,
+            7200
+          ],
+          "dtype": "float32",
+          "units": "",
+          "long_name": "Land sea ice lake bit mask",
+          "standard_name": "None",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 25920000,
+          "valid_values": 25920000,
+          "nan_count": 0,
+          "pct_missing": 0.0,
+          "min_valid": 1.0,
+          "max_valid": 14.0,
+          "mean": 2.2939600944519043,
+          "std": 2.524998664855957
+        },
+        "sea_ice_fraction": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            3600,
+            7200
+          ],
+          "dtype": "float32",
+          "units": "1",
+          "long_name": "Sea ice area fraction",
+          "standard_name": "sea_ice_area_fraction",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 25920000,
+          "valid_values": 17241665,
+          "nan_count": 8678335,
+          "pct_missing": 33.48,
+          "min_valid": 0.0,
+          "max_valid": 1.0,
+          "mean": 0.16060374677181244,
+          "std": 0.35463422536849976
+        }
+      }
+    },
+    "SMAP_SMOS_SSS": {
+      "filepath": "Dataset/cmems_obs-mob_glo_phy-sss_my_multi_P1D_1788514338421.nc",
+      "filename": "cmems_obs-mob_glo_phy-sss_my_multi_P1D_1788514338421.nc",
+      "filesize_bytes": 82980140,
+      "filesize_mb": 79.14,
+      "attrs": {
+        "Conventions": "CF-1.11",
+        "title": "Global Analysed Sea Surface Salinity and Density",
+        "institution": "CNR",
+        "contact": "servicedesk.cmems@mercator-ocean.eu",
+        "references": "Buongiorno Nardelli, B., R. Droghei, and R. Santoleri (2016), Multi-dimensional interpolation of SMOS sea surface salinity with surface temperature and in situ salinity data, Remote Sens. Environ., doi:10.1016/j.rse.2015.12.052.;Sammartino, M., Aronica, S., Santoleri, S., and B. Buongiorno Nardelli, (2022), Retrieving Mediterranean Sea Surface Salinity Distribution and Interannual Trends from Multi-Sensor Satellite and In Situ Data, Remote Sens., doi.org/10.3390/rs14102502.",
+        "subset:source": "ARCO data downloaded from the Marine Data Store using the MyOcean Data Portal",
+        "subset:productId": "MULTIOBS_GLO_PHY_S_SURFACE_MYNRT_015_013",
+        "subset:datasetId": "cmems_obs-mob_glo_phy-sss_my_multi_P1D_202311",
+        "subset:date": "2026-09-04T09:32:18.429Z"
+      },
+      "dims": {
+        "time": 1,
+        "depth": 1,
+        "latitude": 1440,
+        "longitude": 2880
+      },
+      "coords": {
+        "time": {
+          "shape": [
+            1
+          ],
+          "dtype": "datetime64[ns]",
+          "ndim": 1,
+          "min": "2024-12-15T00:00:00.000000000",
+          "max": "2024-12-15T00:00:00.000000000",
+          "values": [
+            "2024-12-15T00:00:00.000000000"
+          ]
+        },
+        "depth": {
+          "shape": [
+            1
+          ],
+          "dtype": "float32",
+          "ndim": 1,
+          "min": -0.0,
+          "max": -0.0,
+          "spacing_mean": null,
+          "is_ascending": true
+        },
+        "latitude": {
+          "shape": [
+            1440
+          ],
+          "dtype": "float32",
+          "ndim": 1,
+          "min": -89.9375,
+          "max": 89.9375,
+          "spacing_mean": 0.125,
+          "is_ascending": true
+        },
+        "longitude": {
+          "shape": [
+            2880
+          ],
+          "dtype": "float32",
+          "ndim": 1,
+          "min": -179.9375,
+          "max": 179.9375,
+          "spacing_mean": 0.125,
+          "is_ascending": true
+        }
+      },
+      "data_vars": {
+        "dos": {
+          "dims": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            1,
+            1440,
+            2880
+          ],
+          "dtype": "float32",
+          "units": "kg/m3",
+          "long_name": "Sea surface density",
+          "standard_name": "sea_surface_density",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 4147200,
+          "valid_values": 2725524,
+          "nan_count": 1421676,
+          "pct_missing": 34.28,
+          "min_valid": 1002.7373657226562,
+          "max_valid": 1029.8485107421875,
+          "mean": 1024.7176513671875,
+          "std": 2.2808854579925537
+        },
+        "dos_error": {
+          "dims": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            1,
+            1440,
+            2880
+          ],
+          "dtype": "float32",
+          "units": "kg/m3",
+          "long_name": "Sea surface density error",
+          "standard_name": "sea_surface_density_error",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 4147200,
+          "valid_values": 4147200,
+          "nan_count": 0,
+          "pct_missing": 0.0,
+          "min_valid": 0.10179600864648819,
+          "max_valid": 6.680000305175781,
+          "mean": 2.5310420989990234,
+          "std": 2.9854228496551514
+        },
+        "sea_ice_fraction": {
+          "dims": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            1,
+            1440,
+            2880
+          ],
+          "dtype": "float32",
+          "units": "percent",
+          "long_name": "Sea ice area fraction",
+          "standard_name": "sea_ice_area_fraction",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 4147200,
+          "valid_values": 2733712,
+          "nan_count": 1413488,
+          "pct_missing": 34.08,
+          "min_valid": 0.0,
+          "max_valid": 1.0,
+          "mean": 0.16205741465091705,
+          "std": 0.3513665199279785
+        },
+        "sos": {
+          "dims": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            1,
+            1440,
+            2880
+          ],
+          "dtype": "float32",
+          "units": ".001",
+          "long_name": "Sea surface salinity",
+          "standard_name": "sea_surface_salinity",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 4147200,
+          "valid_values": 2728867,
+          "nan_count": 1418333,
+          "pct_missing": 34.2,
+          "min_valid": 5.690684795379639,
+          "max_valid": 40.0,
+          "mean": 33.98026657104492,
+          "std": 2.4823620319366455
+        },
+        "sos_error": {
+          "dims": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            1,
+            1440,
+            2880
+          ],
+          "dtype": "float32",
+          "units": "0.001",
+          "long_name": "Sea surface salinity error",
+          "standard_name": "sea_surface_salinity_error",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 4147200,
+          "valid_values": 4147200,
+          "nan_count": 0,
+          "pct_missing": 0.0,
+          "min_valid": 0.1272450089454651,
+          "max_valid": 6.680000305175781,
+          "mean": 2.572882890701294,
+          "std": 2.955211877822876
+        }
+      }
+    },
+    "DUACS_SSH": {
+      "filepath": "Dataset/c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D_1788514168280.nc",
+      "filename": "c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D_1788514168280.nc",
+      "filesize_bytes": 41515708,
+      "filesize_mb": 39.59,
+      "attrs": {
+        "Conventions": "CF-1.11",
+        "title": "DT merged two satellites Global Ocean Gridded SSALTO/DUACS Sea Surface Height L4 product and derived variables",
+        "institution": "CLS, CNES",
+        "source": "Altimetry measurements",
+        "history": "2024/09/23 20:26:01 pva_axp@trex014.sis.cnes.fr Import depuis MSLA.nc",
+        "contact": "http://climate.copernicus.eu/c3s-user-service-desk",
+        "references": "http://climate.copernicus.eu",
+        "comment": "Sea Surface Height measured by Altimetry and derived variables",
+        "subset:source": "ARCO data downloaded from the Marine Data Store using the MyOcean Data Portal",
+        "subset:productId": "SEALEVEL_GLO_PHY_CLIMATE_L4_MY_008_057",
+        "subset:datasetId": "c3s_obs-sl_glo_phy-ssh_my_twosat-l4-duacs-0.25deg_P1D_202411",
+        "subset:date": "2026-09-04T09:29:28.281Z"
+      },
+      "dims": {
+        "time": 1,
+        "latitude": 720,
+        "longitude": 1440
+      },
+      "coords": {
+        "time": {
+          "shape": [
+            1
+          ],
+          "dtype": "datetime64[ns]",
+          "ndim": 1,
+          "min": "2026-01-16T00:00:00.000000000",
+          "max": "2026-01-16T00:00:00.000000000",
+          "values": [
+            "2026-01-16T00:00:00.000000000"
+          ]
+        },
+        "latitude": {
+          "shape": [
+            720
+          ],
+          "dtype": "float32",
+          "ndim": 1,
+          "min": -89.875,
+          "max": 89.875,
+          "spacing_mean": 0.25,
+          "is_ascending": true
+        },
+        "longitude": {
+          "shape": [
+            1440
+          ],
+          "dtype": "float32",
+          "ndim": 1,
+          "min": -179.875,
+          "max": 179.875,
+          "spacing_mean": 0.25,
+          "is_ascending": true
+        }
+      },
+      "data_vars": {
+        "adt": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            720,
+            1440
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "long_name": "Absolute dynamic topography",
+          "standard_name": "sea_surface_height_above_geoid",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 1036800,
+          "valid_values": 611975,
+          "nan_count": 424825,
+          "pct_missing": 40.97,
+          "min_valid": -1.4557000398635864,
+          "max_valid": 1.8964999914169312,
+          "mean": 0.3501334488391876,
+          "std": 0.7451732754707336
+        },
+        "err_sla": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            720,
+            1440
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "long_name": "Formal mapping error",
+          "standard_name": "sea_surface_height_above_sea_level standard_error",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 1036800,
+          "valid_values": 597114,
+          "nan_count": 439686,
+          "pct_missing": 42.41,
+          "min_valid": 0.003700000001117587,
+          "max_valid": 0.2345000058412552,
+          "mean": 0.018627848476171494,
+          "std": 0.013666130602359772
+        },
+        "err_ugosa": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            720,
+            1440
+          ],
+          "dtype": "float32",
+          "units": "m/s",
+          "long_name": "Formal mapping error on zonal geostrophic velocity anomalies",
+          "standard_name": "surface_geostrophic_eastward_sea_water_velocity_assuming_sea_level_for_geoid standard_error",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 1036800,
+          "valid_values": 597114,
+          "nan_count": 439686,
+          "pct_missing": 42.41,
+          "min_valid": 0.005100000184029341,
+          "max_valid": 53.601200103759766,
+          "mean": 0.10529535263776779,
+          "std": 0.48291733860969543
+        },
+        "err_vgosa": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            720,
+            1440
+          ],
+          "dtype": "float32",
+          "units": "m/s",
+          "long_name": "Formal mapping error on meridional geostrophic velocity anomalies",
+          "standard_name": "surface_geostrophic_northward_sea_water_velocity_assuming_sea_level_for_geoid standard_error",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 1036800,
+          "valid_values": 597114,
+          "nan_count": 439686,
+          "pct_missing": 42.41,
+          "min_valid": 0.004699999932199717,
+          "max_valid": 58.23939895629883,
+          "mean": 0.10691464692354202,
+          "std": 0.46822884678840637
+        },
+        "flag_ice": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            720,
+            1440
+          ],
+          "dtype": "float32",
+          "units": "",
+          "long_name": "Ice Flag for a 15% criterion of ice concentration",
+          "standard_name": "status_flag",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 1036800,
+          "valid_values": 614259,
+          "nan_count": 422541,
+          "pct_missing": 40.75,
+          "min_valid": 0.0,
+          "max_valid": 1.0,
+          "mean": 0.050508011132478714,
+          "std": 0.218990758061409
+        },
+        "sla": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            720,
+            1440
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "long_name": "Sea level anomaly",
+          "standard_name": "sea_surface_height_above_sea_level",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 1036800,
+          "valid_values": 614259,
+          "nan_count": 422541,
+          "pct_missing": 40.75,
+          "min_valid": -0.95660001039505,
+          "max_valid": 1.0678000450134277,
+          "mean": 0.10602423548698425,
+          "std": 0.08461986482143402
+        },
+        "tpa_correction": {
+          "dims": [
+            "time"
+          ],
+          "shape": [
+            1
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "long_name": "TOPEX-A instrumental drift correction derived from altimetry and tide gauges global comparisons (WCRP Sea Level Budget Group, 2018)",
+          "standard_name": "sea_surface_height_above_sea_level",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 1,
+          "valid_values": 0,
+          "nan_count": 1,
+          "pct_missing": 100.0,
+          "min_valid": null,
+          "max_valid": null,
+          "mean": null,
+          "std": null
+        },
+        "ugos": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            720,
+            1440
+          ],
+          "dtype": "float32",
+          "units": "m/s",
+          "long_name": "Absolute geostrophic velocity: zonal component",
+          "standard_name": "surface_geostrophic_eastward_sea_water_velocity",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 1036800,
+          "valid_values": 611954,
+          "nan_count": 424846,
+          "pct_missing": 40.98,
+          "min_valid": -1.9163999557495117,
+          "max_valid": 3.467400074005127,
+          "mean": 0.014088550582528114,
+          "std": 0.16432523727416992
+        },
+        "ugosa": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            720,
+            1440
+          ],
+          "dtype": "float32",
+          "units": "m/s",
+          "long_name": "Geostrophic velocity anomalies: zonal component",
+          "standard_name": "surface_geostrophic_eastward_sea_water_velocity_assuming_sea_level_for_geoid",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 1036800,
+          "valid_values": 614244,
+          "nan_count": 422556,
+          "pct_missing": 40.76,
+          "min_valid": -2.4769999980926514,
+          "max_valid": 2.9335999488830566,
+          "mean": 0.0008265510550700128,
+          "std": 0.1332843154668808
+        },
+        "vgos": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            720,
+            1440
+          ],
+          "dtype": "float32",
+          "units": "m/s",
+          "long_name": "Absolute geostrophic velocity: meridian component",
+          "standard_name": "surface_geostrophic_northward_sea_water_velocity",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 1036800,
+          "valid_values": 611947,
+          "nan_count": 424853,
+          "pct_missing": 40.98,
+          "min_valid": -2.8397998809814453,
+          "max_valid": 3.1816999912261963,
+          "mean": 5.949847400188446e-05,
+          "std": 0.14115342497825623
+        },
+        "vgosa": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            1,
+            720,
+            1440
+          ],
+          "dtype": "float32",
+          "units": "m/s",
+          "long_name": "Geostrophic velocity anomalies: meridian component",
+          "standard_name": "surface_geostrophic_northward_sea_water_velocity_assuming_sea_level_for_geoid",
+          "_FillValue": "None",
+          "missing_value": "None",
+          "total_values": 1036800,
+          "valid_values": 614235,
+          "nan_count": 422565,
+          "pct_missing": 40.76,
+          "min_valid": -2.675100088119507,
+          "max_valid": 2.9656999111175537,
+          "mean": -0.0005822610110044479,
+          "std": 0.12720109522342682
+        }
+      }
+    }
+  },
+  "source_mode": "REANALYSIS_FALLBACK",
+  "ps_requirements_compliance": {
+    "canonical_channels_required": 7,
+    "canonical_depths_required": 15,
+    "target_depths_present_in_glorys": [
+      0.494025
+    ],
+    "target_depths_missing_in_glorys": [
+      5,
+      10,
+      20,
+      30,
+      50,
+      75,
+      100,
+      125,
+      150,
+      200,
+      300,
+      500,
+      700,
+      1000
+    ],
+    "temporal_samples_present_in_glorys": 1,
+    "temporal_samples_required_for_a1": 30,
+    "date_concordance": false,
+    "dates_by_product": {
+      "GLORYS": "2026-06-23",
+      "OSTIA": "2026-03-31",
+      "SMAP_SMOS_SSS": "2024-12-15",
+      "DUACS_SSH": "2026-01-16",
+      "ASCAT_WINDS": "2020-01-01"
+    }
+  },
+  "blocking_issues": [
+    "GLORYS NetCDF contains only 1 vertical level (z=0.494m). Subsurface levels (5-1000m) are entirely absent.",
+    "Temporal mismatch: The 5 products are from 5 completely different years and months (2020 to 2026).",
+    "Sample count: Each CMEMS product has only 1 daily timestamp instead of a 30-day sequence.",
+    "Gridded wind missing: ASCAT is in ungridded L2 orbital swath format and GLORYS does not include u10/v10."
+  ]
+}

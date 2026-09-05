@@ -1,0 +1,95 @@
+# OceanEmbed Configuration (SIH26066 Aligned)
+# ============================================
+# Canonical pipeline for estimating 3D subsurface ocean
+# temperature from surface fields using a learned
+# embedding + regression head.
+
+# --- Domain specifications ---
+# Official SIH26066 Problem Statement Domain:
+official_domain:
+  name: "North Indian Ocean (Official PS Domain)"
+  lat_min: 5.0
+  lat_max: 30.0
+  lon_min: 45.0
+  lon_max: 105.0
+  grid_resolution: 0.25    # degrees
+
+# Active Region: MVP / Pilot Subset (Phase A feasibility proof)
+# Note: This is an MVP pilot subset and NOT the full PS domain.
+region:
+  name: "Bay of Bengal (MVP / Pilot Subset)"
+  lat_min: 5.0
+  lat_max: 25.0
+  lon_min: 80.0
+  lon_max: 100.0
+  grid_resolution: 0.25    # degrees
+  is_pilot_subset: true
+
+# --- Temporal range ---
+temporal:
+  start_date: "2020-01-01"
+  end_date: "2021-12-31"
+  frequency: "D"            # daily
+
+# --- Data source mode ---
+# Supported scientific modes:
+#   A. SATELLITE_OBSERVATION: True satellite surface products (Final PS requirement).
+#   B. REANALYSIS_FALLBACK: GLORYS surface layers used for Phase A engineering convenience.
+#      (Note: Does NOT constitute the final satellite-only PS demonstration).
+#   C. MIXED: Satellite observations + reanalysis atmospheric forcing.
+data_source_mode: "REANALYSIS_FALLBACK"
+
+# Runtime source selector:
+# 'synthetic' generates physically-plausible toy data for pipeline verification.
+# 'glorys' loads NetCDF files under data/.
+data_source: "synthetic"
+
+# --- Surface (input) variables ---
+# Canonical 7 surface input fields per official SIH26066 specification.
+# Canonical order yields input tensor: [B, 7, H, W]
+surface_variables:
+  - sst        # Channel 0: Sea Surface Temperature (degC / K) — NOAA OISST / CMEMS
+  - sss        # Channel 1: Sea Surface Salinity (PSU) — SMAP / CMEMS L4
+  - ssh        # Channel 2: Sea Level Anomaly / SSH / ADT (m) — C3S / DUACS
+  - u_current  # Channel 3: Surface Current zonal velocity U (m/s) — OSCAR / CMEMS
+  - v_current  # Channel 4: Surface Current meridional velocity V (m/s) — OSCAR / CMEMS
+  - u_wind     # Channel 5: 10 m Surface Wind zonal velocity U (m/s) — ERA5
+  - v_wind     # Channel 6: 10 m Surface Wind meridional velocity V (m/s) — ERA5
+
+# --- Target (output) ---
+# Canonical 15 depth levels per official SIH26066 specification.
+# Output mode:
+#   'profile'  : [B, 15] spatial-average / point profile regression
+#   'dense_3d' : [B, 15, H, W] dense spatial 3D field (future PS reconstruction)
+output_mode: "profile"
+target:
+  name: "subsurface_temperature"
+  depths: [0, 5, 10, 20, 30, 50, 75, 100, 125, 150, 200, 300, 500, 700, 1000]
+  unit: "degC"
+  supervision_source: "GLORYS12V1 (reanalysis-derived training target)"
+  validation_source: "ARGO (independent observational validation)"
+
+# --- Model architecture ---
+model:
+  name: "SatEmbedNet"
+  in_channels: 7           # Canonical 7 input channels
+  embedding_dim: 128       # latent vector size
+  conv_channels: [32, 64, 128]
+  conv_kernel: 3
+  dropout: 0.1
+  activation: "gelu"
+
+# --- Training & Data Leakage Protection ---
+training:
+  batch_size: 16
+  epochs: 50
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  scheduler: "cosine"
+  # Data leakage prevention: temporal separation (contiguous blocks)
+  split_mode: "temporal"    # 'temporal' (contiguous blocks) preferred over 'random'
+  train_split: 0.7          # Earliest 70% of days
+  val_split: 0.15           # Middle 15% of days
+  test_split: 0.15          # Held-out latest 15% of days
+  early_stopping_patience: 8
+  seed: 42

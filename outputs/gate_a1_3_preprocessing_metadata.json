@@ -1,0 +1,837 @@
+{
+  "input_file": "Dataset\\gate_a1_pilot\\glorys_pilot_30d_fullcolumn_1100m.nc",
+  "output_file": "Dataset\\gate_a1_pilot\\glorys_pilot_30d_15depths_preprocessed.nc",
+  "input_dimensions": {
+    "time": 30,
+    "depth": 36,
+    "latitude": 73,
+    "longitude": 97
+  },
+  "output_dimensions": {
+    "time": 30,
+    "depth": 15,
+    "latitude": 73,
+    "longitude": 97
+  },
+  "native_depths": [
+    0.494,
+    1.5414,
+    2.6457,
+    3.8195,
+    5.0782,
+    6.4406,
+    7.9296,
+    9.573,
+    11.405,
+    13.4671,
+    15.8101,
+    18.4956,
+    21.5988,
+    25.2114,
+    29.4447,
+    34.4342,
+    40.3441,
+    47.3737,
+    55.7643,
+    65.8073,
+    77.8539,
+    92.3261,
+    109.7293,
+    130.666,
+    155.8507,
+    186.1256,
+    222.4752,
+    266.0403,
+    318.1274,
+    380.213,
+    453.9377,
+    541.0889,
+    643.5668,
+    763.3331,
+    902.3393,
+    1062.4399
+  ],
+  "target_depths": [
+    0,
+    5,
+    10,
+    20,
+    30,
+    50,
+    75,
+    100,
+    125,
+    150,
+    200,
+    300,
+    500,
+    700,
+    1000
+  ],
+  "validation": {
+    "valid": true,
+    "n_levels": 36,
+    "uppermost_m": 0.49402499198913574,
+    "deepest_m": 1062.43994140625,
+    "bracket_1000m_lower_idx": 34,
+    "bracket_1000m_lower_m": 902.3392944335938,
+    "bracket_1000m_upper_idx": 35,
+    "bracket_1000m_upper_m": 1062.43994140625
+  },
+  "weights": [
+    {
+      "target_depth_m": 0.0,
+      "lower_idx": 0,
+      "upper_idx": 0,
+      "lower_depth_m": 0.49402499198913574,
+      "upper_depth_m": 0.49402499198913574,
+      "alpha": 0.0,
+      "method": "nearest_surface_level"
+    },
+    {
+      "target_depth_m": 5.0,
+      "lower_idx": 3,
+      "upper_idx": 4,
+      "lower_depth_m": 3.8194949626922607,
+      "upper_depth_m": 5.078224182128906,
+      "alpha": 0.937854638693526,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 10.0,
+      "lower_idx": 7,
+      "upper_idx": 8,
+      "lower_depth_m": 9.572997093200684,
+      "upper_depth_m": 11.404999732971191,
+      "alpha": 0.2330798534508697,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 20.0,
+      "lower_idx": 11,
+      "upper_idx": 12,
+      "lower_depth_m": 18.495559692382812,
+      "upper_depth_m": 21.598819732666016,
+      "alpha": 0.4847935036342918,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 30.0,
+      "lower_idx": 14,
+      "upper_idx": 15,
+      "lower_depth_m": 29.444730758666992,
+      "upper_depth_m": 34.43415069580078,
+      "alpha": 0.11128933790487608,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 50.0,
+      "lower_idx": 17,
+      "upper_idx": 18,
+      "lower_depth_m": 47.37369155883789,
+      "upper_depth_m": 55.76428985595703,
+      "alpha": 0.31300609898865445,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 75.0,
+      "lower_idx": 19,
+      "upper_idx": 20,
+      "lower_depth_m": 65.80726623535156,
+      "upper_depth_m": 77.85385131835938,
+      "alpha": 0.7630987289182188,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 100.0,
+      "lower_idx": 21,
+      "upper_idx": 22,
+      "lower_depth_m": 92.3260726928711,
+      "upper_depth_m": 109.72930145263672,
+      "alpha": 0.4409484822075196,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 125.0,
+      "lower_idx": 22,
+      "upper_idx": 23,
+      "lower_depth_m": 109.72930145263672,
+      "upper_depth_m": 130.66600036621094,
+      "alpha": 0.7293747027838562,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 150.0,
+      "lower_idx": 23,
+      "upper_idx": 24,
+      "lower_depth_m": 130.66600036621094,
+      "upper_depth_m": 155.85069274902344,
+      "alpha": 0.7676885363501088,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 200.0,
+      "lower_idx": 25,
+      "upper_idx": 26,
+      "lower_depth_m": 186.12559509277344,
+      "upper_depth_m": 222.47520446777344,
+      "alpha": 0.3816933701842996,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 300.0,
+      "lower_idx": 27,
+      "upper_idx": 28,
+      "lower_depth_m": 266.0403137207031,
+      "upper_depth_m": 318.1274108886719,
+      "alpha": 0.6519788609026301,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 500.0,
+      "lower_idx": 30,
+      "upper_idx": 31,
+      "lower_depth_m": 453.9377136230469,
+      "upper_depth_m": 541.0889282226562,
+      "alpha": 0.5285329250839791,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 700.0,
+      "lower_idx": 32,
+      "upper_idx": 33,
+      "lower_depth_m": 643.5667724609375,
+      "upper_depth_m": 763.3331298828125,
+      "alpha": 0.4711943216263762,
+      "method": "bracketed_linear_interpolation"
+    },
+    {
+      "target_depth_m": 1000.0,
+      "lower_idx": 34,
+      "upper_idx": 35,
+      "lower_depth_m": 902.3392944335938,
+      "upper_depth_m": 1062.43994140625,
+      "alpha": 0.6099956959142446,
+      "method": "bracketed_linear_interpolation"
+    }
+  ],
+  "coverage": {
+    "thetao": [
+      {
+        "target_depth_m": 0,
+        "valid_coverage_pct": 99.3363,
+        "valid_points": 211020,
+        "nan_points": 1410,
+        "total_points": 212430,
+        "min": 23.2142,
+        "max": 28.9514,
+        "mean": 26.907
+      },
+      {
+        "target_depth_m": 5,
+        "valid_coverage_pct": 99.3363,
+        "valid_points": 211020,
+        "nan_points": 1410,
+        "total_points": 212430,
+        "min": 23.3765,
+        "max": 29.012,
+        "mean": 26.8741
+      },
+      {
+        "target_depth_m": 10,
+        "valid_coverage_pct": 99.2515,
+        "valid_points": 210840,
+        "nan_points": 1590,
+        "total_points": 212430,
+        "min": 23.7131,
+        "max": 29.1911,
+        "mean": 26.8984
+      },
+      {
+        "target_depth_m": 20,
+        "valid_coverage_pct": 99.0538,
+        "valid_points": 210420,
+        "nan_points": 2010,
+        "total_points": 212430,
+        "min": 24.0368,
+        "max": 29.4062,
+        "mean": 27.1556
+      },
+      {
+        "target_depth_m": 30,
+        "valid_coverage_pct": 98.7996,
+        "valid_points": 209880,
+        "nan_points": 2550,
+        "total_points": 212430,
+        "min": 24.8619,
+        "max": 29.5098,
+        "mean": 27.4731
+      },
+      {
+        "target_depth_m": 50,
+        "valid_coverage_pct": 98.3901,
+        "valid_points": 209010,
+        "nan_points": 3420,
+        "total_points": 212430,
+        "min": 25.6328,
+        "max": 29.0872,
+        "mean": 27.6549
+      },
+      {
+        "target_depth_m": 75,
+        "valid_coverage_pct": 98.0935,
+        "valid_points": 208380,
+        "nan_points": 4050,
+        "total_points": 212430,
+        "min": 21.143,
+        "max": 27.9835,
+        "mean": 25.874
+      },
+      {
+        "target_depth_m": 100,
+        "valid_coverage_pct": 97.7122,
+        "valid_points": 207570,
+        "nan_points": 4860,
+        "total_points": 212430,
+        "min": 18.3138,
+        "max": 25.7345,
+        "mean": 22.3764
+      },
+      {
+        "target_depth_m": 125,
+        "valid_coverage_pct": 97.6416,
+        "valid_points": 207420,
+        "nan_points": 5010,
+        "total_points": 212430,
+        "min": 15.5937,
+        "max": 22.5092,
+        "mean": 19.2235
+      },
+      {
+        "target_depth_m": 150,
+        "valid_coverage_pct": 97.6416,
+        "valid_points": 207420,
+        "nan_points": 5010,
+        "total_points": 212430,
+        "min": 14.1954,
+        "max": 19.8093,
+        "mean": 16.7679
+      },
+      {
+        "target_depth_m": 200,
+        "valid_coverage_pct": 97.5568,
+        "valid_points": 207240,
+        "nan_points": 5190,
+        "total_points": 212430,
+        "min": 12.3914,
+        "max": 15.9721,
+        "mean": 13.947
+      },
+      {
+        "target_depth_m": 300,
+        "valid_coverage_pct": 97.5004,
+        "valid_points": 207120,
+        "nan_points": 5310,
+        "total_points": 212430,
+        "min": 10.7952,
+        "max": 12.5298,
+        "mean": 11.5602
+      },
+      {
+        "target_depth_m": 500,
+        "valid_coverage_pct": 97.3309,
+        "valid_points": 206760,
+        "nan_points": 5670,
+        "total_points": 212430,
+        "min": 9.4012,
+        "max": 10.5324,
+        "mean": 9.8927
+      },
+      {
+        "target_depth_m": 700,
+        "valid_coverage_pct": 97.0908,
+        "valid_points": 206250,
+        "nan_points": 6180,
+        "total_points": 212430,
+        "min": 7.8437,
+        "max": 9.2162,
+        "mean": 8.4234
+      },
+      {
+        "target_depth_m": 1000,
+        "valid_coverage_pct": 96.6248,
+        "valid_points": 205260,
+        "nan_points": 7170,
+        "total_points": 212430,
+        "min": 5.8826,
+        "max": 7.2236,
+        "mean": 6.6332
+      }
+    ],
+    "so": [
+      {
+        "target_depth_m": 0,
+        "valid_coverage_pct": 99.3363,
+        "valid_points": 211020,
+        "nan_points": 1410,
+        "total_points": 212430,
+        "min": 27.749,
+        "max": 33.993,
+        "mean": 32.0202
+      },
+      {
+        "target_depth_m": 5,
+        "valid_coverage_pct": 99.3363,
+        "valid_points": 211020,
+        "nan_points": 1410,
+        "total_points": 212430,
+        "min": 27.7533,
+        "max": 33.993,
+        "mean": 32.0233
+      },
+      {
+        "target_depth_m": 10,
+        "valid_coverage_pct": 99.2515,
+        "valid_points": 210840,
+        "nan_points": 1590,
+        "total_points": 212430,
+        "min": 28.2718,
+        "max": 33.9915,
+        "mean": 32.0671
+      },
+      {
+        "target_depth_m": 20,
+        "valid_coverage_pct": 99.0538,
+        "valid_points": 210420,
+        "nan_points": 2010,
+        "total_points": 212430,
+        "min": 29.3686,
+        "max": 33.9915,
+        "mean": 32.3725
+      },
+      {
+        "target_depth_m": 30,
+        "valid_coverage_pct": 98.7996,
+        "valid_points": 209880,
+        "nan_points": 2550,
+        "total_points": 212430,
+        "min": 30.5175,
+        "max": 34.0727,
+        "mean": 32.7324
+      },
+      {
+        "target_depth_m": 50,
+        "valid_coverage_pct": 98.3901,
+        "valid_points": 209010,
+        "nan_points": 3420,
+        "total_points": 212430,
+        "min": 31.6736,
+        "max": 34.2762,
+        "mean": 33.3294
+      },
+      {
+        "target_depth_m": 75,
+        "valid_coverage_pct": 98.0935,
+        "valid_points": 208380,
+        "nan_points": 4050,
+        "total_points": 212430,
+        "min": 32.9502,
+        "max": 34.8603,
+        "mean": 34.3022
+      },
+      {
+        "target_depth_m": 100,
+        "valid_coverage_pct": 97.7122,
+        "valid_points": 207570,
+        "nan_points": 4860,
+        "total_points": 212430,
+        "min": 34.1442,
+        "max": 34.959,
+        "mean": 34.705
+      },
+      {
+        "target_depth_m": 125,
+        "valid_coverage_pct": 97.6416,
+        "valid_points": 207420,
+        "nan_points": 5010,
+        "total_points": 212430,
+        "min": 34.6378,
+        "max": 34.9892,
+        "mean": 34.8335
+      },
+      {
+        "target_depth_m": 150,
+        "valid_coverage_pct": 97.6416,
+        "valid_points": 207420,
+        "nan_points": 5010,
+        "total_points": 212430,
+        "min": 34.7709,
+        "max": 34.9908,
+        "mean": 34.8827
+      },
+      {
+        "target_depth_m": 200,
+        "valid_coverage_pct": 97.5568,
+        "valid_points": 207240,
+        "nan_points": 5190,
+        "total_points": 212430,
+        "min": 34.8853,
+        "max": 35.0693,
+        "mean": 34.9713
+      },
+      {
+        "target_depth_m": 300,
+        "valid_coverage_pct": 97.5004,
+        "valid_points": 207120,
+        "nan_points": 5310,
+        "total_points": 212430,
+        "min": 34.9781,
+        "max": 35.1072,
+        "mean": 35.0341
+      },
+      {
+        "target_depth_m": 500,
+        "valid_coverage_pct": 97.3309,
+        "valid_points": 206760,
+        "nan_points": 5670,
+        "total_points": 212430,
+        "min": 34.9576,
+        "max": 35.0899,
+        "mean": 35.033
+      },
+      {
+        "target_depth_m": 700,
+        "valid_coverage_pct": 97.0908,
+        "valid_points": 206250,
+        "nan_points": 6180,
+        "total_points": 212430,
+        "min": 34.9039,
+        "max": 35.0777,
+        "mean": 34.9937
+      },
+      {
+        "target_depth_m": 1000,
+        "valid_coverage_pct": 96.6248,
+        "valid_points": 205260,
+        "nan_points": 7170,
+        "total_points": 212430,
+        "min": 34.8723,
+        "max": 35.0631,
+        "mean": 34.9383
+      }
+    ],
+    "uo": [
+      {
+        "target_depth_m": 0,
+        "valid_coverage_pct": 99.3363,
+        "valid_points": 211020,
+        "nan_points": 1410,
+        "total_points": 212430,
+        "min": -0.661,
+        "max": 0.835,
+        "mean": -0.0649
+      },
+      {
+        "target_depth_m": 5,
+        "valid_coverage_pct": 99.3363,
+        "valid_points": 211020,
+        "nan_points": 1410,
+        "total_points": 212430,
+        "min": -0.6484,
+        "max": 0.8212,
+        "mean": -0.0492
+      },
+      {
+        "target_depth_m": 10,
+        "valid_coverage_pct": 99.2515,
+        "valid_points": 210840,
+        "nan_points": 1590,
+        "total_points": 212430,
+        "min": -0.6091,
+        "max": 0.809,
+        "mean": -0.0356
+      },
+      {
+        "target_depth_m": 20,
+        "valid_coverage_pct": 99.0538,
+        "valid_points": 210420,
+        "nan_points": 2010,
+        "total_points": 212430,
+        "min": -0.5046,
+        "max": 0.8451,
+        "mean": -0.0054
+      },
+      {
+        "target_depth_m": 30,
+        "valid_coverage_pct": 98.7996,
+        "valid_points": 209880,
+        "nan_points": 2550,
+        "total_points": 212430,
+        "min": -0.5039,
+        "max": 0.8774,
+        "mean": 0.0051
+      },
+      {
+        "target_depth_m": 50,
+        "valid_coverage_pct": 98.3759,
+        "valid_points": 208980,
+        "nan_points": 3450,
+        "total_points": 212430,
+        "min": -0.5387,
+        "max": 0.9037,
+        "mean": 0.0059
+      },
+      {
+        "target_depth_m": 75,
+        "valid_coverage_pct": 98.0935,
+        "valid_points": 208380,
+        "nan_points": 4050,
+        "total_points": 212430,
+        "min": -0.4893,
+        "max": 0.8039,
+        "mean": 0.0034
+      },
+      {
+        "target_depth_m": 100,
+        "valid_coverage_pct": 97.7122,
+        "valid_points": 207570,
+        "nan_points": 4860,
+        "total_points": 212430,
+        "min": -0.4367,
+        "max": 0.6301,
+        "mean": 0.0014
+      },
+      {
+        "target_depth_m": 125,
+        "valid_coverage_pct": 97.6416,
+        "valid_points": 207420,
+        "nan_points": 5010,
+        "total_points": 212430,
+        "min": -0.3877,
+        "max": 0.5209,
+        "mean": 0.0012
+      },
+      {
+        "target_depth_m": 150,
+        "valid_coverage_pct": 97.6416,
+        "valid_points": 207420,
+        "nan_points": 5010,
+        "total_points": 212430,
+        "min": -0.3329,
+        "max": 0.4627,
+        "mean": 0.002
+      },
+      {
+        "target_depth_m": 200,
+        "valid_coverage_pct": 97.5568,
+        "valid_points": 207240,
+        "nan_points": 5190,
+        "total_points": 212430,
+        "min": -0.2663,
+        "max": 0.3919,
+        "mean": 0.0032
+      },
+      {
+        "target_depth_m": 300,
+        "valid_coverage_pct": 97.5004,
+        "valid_points": 207120,
+        "nan_points": 5310,
+        "total_points": 212430,
+        "min": -0.2219,
+        "max": 0.3024,
+        "mean": 0.0031
+      },
+      {
+        "target_depth_m": 500,
+        "valid_coverage_pct": 97.3309,
+        "valid_points": 206760,
+        "nan_points": 5670,
+        "total_points": 212430,
+        "min": -0.2182,
+        "max": 0.2115,
+        "mean": 0.0018
+      },
+      {
+        "target_depth_m": 700,
+        "valid_coverage_pct": 97.0908,
+        "valid_points": 206250,
+        "nan_points": 6180,
+        "total_points": 212430,
+        "min": -0.1815,
+        "max": 0.1844,
+        "mean": 0.0004
+      },
+      {
+        "target_depth_m": 1000,
+        "valid_coverage_pct": 96.6248,
+        "valid_points": 205260,
+        "nan_points": 7170,
+        "total_points": 212430,
+        "min": -0.1682,
+        "max": 0.1911,
+        "mean": -0.0016
+      }
+    ],
+    "vo": [
+      {
+        "target_depth_m": 0,
+        "valid_coverage_pct": 99.3363,
+        "valid_points": 211020,
+        "nan_points": 1410,
+        "total_points": 212430,
+        "min": -0.5213,
+        "max": 0.6818,
+        "mean": 0.0061
+      },
+      {
+        "target_depth_m": 5,
+        "valid_coverage_pct": 99.3363,
+        "valid_points": 211020,
+        "nan_points": 1410,
+        "total_points": 212430,
+        "min": -0.4881,
+        "max": 0.6866,
+        "mean": 0.0216
+      },
+      {
+        "target_depth_m": 10,
+        "valid_coverage_pct": 99.2515,
+        "valid_points": 210840,
+        "nan_points": 1590,
+        "total_points": 212430,
+        "min": -0.5093,
+        "max": 0.6871,
+        "mean": 0.0275
+      },
+      {
+        "target_depth_m": 20,
+        "valid_coverage_pct": 99.0538,
+        "valid_points": 210420,
+        "nan_points": 2010,
+        "total_points": 212430,
+        "min": -0.4991,
+        "max": 0.6806,
+        "mean": 0.0188
+      },
+      {
+        "target_depth_m": 30,
+        "valid_coverage_pct": 98.7996,
+        "valid_points": 209880,
+        "nan_points": 2550,
+        "total_points": 212430,
+        "min": -0.4833,
+        "max": 0.6682,
+        "mean": 0.0017
+      },
+      {
+        "target_depth_m": 50,
+        "valid_coverage_pct": 98.3759,
+        "valid_points": 208980,
+        "nan_points": 3450,
+        "total_points": 212430,
+        "min": -0.4959,
+        "max": 0.6866,
+        "mean": -0.0108
+      },
+      {
+        "target_depth_m": 75,
+        "valid_coverage_pct": 98.0935,
+        "valid_points": 208380,
+        "nan_points": 4050,
+        "total_points": 212430,
+        "min": -0.4868,
+        "max": 0.6143,
+        "mean": -0.0112
+      },
+      {
+        "target_depth_m": 100,
+        "valid_coverage_pct": 97.7122,
+        "valid_points": 207570,
+        "nan_points": 4860,
+        "total_points": 212430,
+        "min": -0.404,
+        "max": 0.4905,
+        "mean": -0.0073
+      },
+      {
+        "target_depth_m": 125,
+        "valid_coverage_pct": 97.6416,
+        "valid_points": 207420,
+        "nan_points": 5010,
+        "total_points": 212430,
+        "min": -0.3706,
+        "max": 0.4642,
+        "mean": -0.0025
+      },
+      {
+        "target_depth_m": 150,
+        "valid_coverage_pct": 97.6416,
+        "valid_points": 207420,
+        "nan_points": 5010,
+        "total_points": 212430,
+        "min": -0.3422,
+        "max": 0.4969,
+        "mean": 0.0015
+      },
+      {
+        "target_depth_m": 200,
+        "valid_coverage_pct": 97.5568,
+        "valid_points": 207240,
+        "nan_points": 5190,
+        "total_points": 212430,
+        "min": -0.3285,
+        "max": 0.45,
+        "mean": 0.005
+      },
+      {
+        "target_depth_m": 300,
+        "valid_coverage_pct": 97.5004,
+        "valid_points": 207120,
+        "nan_points": 5310,
+        "total_points": 212430,
+        "min": -0.2588,
+        "max": 0.3231,
+        "mean": 0.0056
+      },
+      {
+        "target_depth_m": 500,
+        "valid_coverage_pct": 97.3309,
+        "valid_points": 206760,
+        "nan_points": 5670,
+        "total_points": 212430,
+        "min": -0.2553,
+        "max": 0.2041,
+        "mean": 0.0041
+      },
+      {
+        "target_depth_m": 700,
+        "valid_coverage_pct": 97.0908,
+        "valid_points": 206250,
+        "nan_points": 6180,
+        "total_points": 212430,
+        "min": -0.2533,
+        "max": 0.2042,
+        "mean": 0.0022
+      },
+      {
+        "target_depth_m": 1000,
+        "valid_coverage_pct": 96.6248,
+        "valid_points": 205260,
+        "nan_points": 7170,
+        "total_points": 212430,
+        "min": -0.238,
+        "max": 0.174,
+        "mean": -0.0005
+      }
+    ],
+    "zos": {
+      "valid_coverage_pct": 99.3363,
+      "valid_points": 211020,
+      "nan_points": 1410,
+      "total_points": 212430,
+      "min": 0.3287,
+      "max": 0.7166,
+      "mean": 0.5426
+    }
+  }
+}
