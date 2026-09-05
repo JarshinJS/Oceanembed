@@ -6,7 +6,6 @@
 [![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c.svg)](https://pytorch.org/)
 [![Validation](https://img.shields.io/badge/Gate%20A4.3-ARGO%20Frozen%20(p%3D0.0017)-green.svg)](reports/GATE_A4_3_ARGO_VALIDATION.md)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ---
 
@@ -14,7 +13,7 @@
 
 **OceanEmbed** is a deep learning framework designed to reconstruct dense 3D subsurface ocean temperature fields across 15 vertical levels (from the sea surface down to 1000 meters) directly from multi-sensor satellite surface observations.
 
-By integrating specialized multimodal input encoders, multi-scale spatial convolutional representations, and depth-conditioned feature modulation, OceanEmbed accurately models the non-linear coupling between surface signatures (temperature, salinity, sea surface height, currents, and winds) and internal vertical ocean thermal structure.
+By integrating specialized multimodal input encoders, multi-scale spatial convolutional representations, and depth-conditioned feature modulation, OceanEmbed learns nonlinear relationships between surface observations and subsurface ocean thermal structure.
 
 ---
 
@@ -50,10 +49,10 @@ To maintain rigorous scientific clarity, the domain boundaries are explicitly se
 | **Longitude Range** | $45.0^\circ\text{E} - 105.0^\circ\text{E}$ (Arabian Sea + Bay of Bengal) | $85.125^\circ\text{E} - 92.875^\circ\text{E}$ ($32$ cell centers) |
 | **Grid Resolution** | $0.25^\circ$ cell-centered | $0.25^\circ$ cell-centered ($24 \times 32$ grid) |
 | **Vertical Levels** | 15 canonical depths ($0\text{--}1000\text{ m}$) | 15 canonical depths ($0\text{--}1000\text{ m}$) |
-| **Status** | Full Target Objective | **Fully Validated Proof-of-Concept (Gates A1–A4)** |
+| **Status** | Full Target Objective | **Validated Regional Proof-of-Concept** |
 
 > [!IMPORTANT]
-> The current validated Proof-of-Concept demonstrates the architecture, data pipeline, and statistical validation in the Bay of Bengal pilot box. It does **not** claim pan-basin generalization across the Arabian Sea or full North Indian Ocean without expanded regional training.
+> The current validation is strictly regional (Central Bay of Bengal) and time-limited (Q1 2020). It demonstrates the architecture, synchronized data pipeline, and statistical validation on the pilot box, but does **not** establish full North Indian Ocean basin generalization.
 
 ---
 
@@ -159,7 +158,7 @@ Evaluated against **34 independent in situ ARGO float profiles** across the held
 | **Surface Regime** | $0\text{--}20\text{ m}$ | $1.1098\text{ }^\circ\text{C}$ | $1.0672\text{ }^\circ\text{C}$ | $-3.84\%$ | $0.8423$ | $-0.5960\text{ }^\circ\text{C}$ |
 | **Deep Ocean** | $> 200\text{ m}$ | $0.9634\text{ }^\circ\text{C}$ | $0.6927\text{ }^\circ\text{C}$ | $-28.10\%$ | $0.9958$ | $+0.0617\text{ }^\circ\text{C}$ |
 
-### Statistical Independence & Clustering Rigor
+### Statistical Clustering & Inference Rigor
 - **Paired In Situ Soundings:** $3,966$ observation points.
 - **Float Population:** $34$ collocated profiles nested within **14 unique WMO float platforms, treated as conservative cluster units**.
 - **Platform-Clustered Permutation Test:** **$p = 0.001709$** (statistically significant subsurface improvement over climatology).
@@ -304,10 +303,11 @@ http://127.0.0.1:8050
 
 This repository strictly adheres to physical oceanography conventions and SIH 2026 evaluation rules:
 
-1. **GLORYS Reference Designation:** Copernicus GLORYS12V1 is a numerical reanalysis product assimilating observational data; it is designated as **"GLORYS reanalysis-derived reference"** and is **never** referred to as "ground truth".
+1. **GLORYS Reference Designation:** Copernicus GLORYS12V1 is a numerical reanalysis product assimilating observational data; it is designated as **"GLORYS reanalysis-derived training target/reference"** and is **never** referred to as "ground truth".
 2. **ARGO Designation:** In situ ARGO float soundings represent independent, un-gridded measurements and are designated as **"Independent ARGO observational reference"**.
 3. **Platform Clustering:** Float statistics explicitly cite **"14 unique WMO float platforms, treated as conservative cluster units"** to prevent pseudo-replication.
 4. **Land Mask Preservation:** Coastal and land cells are masked as `null` or NaN. Missing values are never filled with synthetic numbers.
+5. **Numerical Model & Benchmark Boundaries:** OceanEmbed is an exploratory deep learning diagnostic framework. It does not replace numerical ocean circulation models and does not claim to outperform GLORYS reanalysis.
 
 ---
 
@@ -316,7 +316,7 @@ This repository strictly adheres to physical oceanography conventions and SIH 20
 - **Regional Bounding:** Model verification is strictly regional (Central Bay of Bengal). Generalization to the Western Arabian Sea, equatorial currents, or global ocean basins requires regional retraining.
 - **Temporal Bounding:** Validated over Q1 2020. Inter-annual variability (e.g., strong Indian Ocean Dipole or El Niño events) is not yet captured.
 - **Surface Regime Cold Bias:** In the uppermost $0\text{--}20\text{ m}$ mixed layer, a systematic cold bias of $-0.596\text{ }^\circ\text{C}$ remains relative to in situ floats.
-- **Deep Ocean Convergence:** Below $200\text{ m}$, the model converges toward climatology due to weak surface-to-deep physical coupling.
+- **Deep Ocean Performance:** Performance gains are not uniform across individual depths below 200 m, and some depth levels remain challenging. Broader multi-season and multi-year validation is required to characterize deep-ocean generalization.
 - **Operational Boundary:** OceanEmbed is a diagnostic subsurface reconstruction framework. It is **not** an operational circulation forecast model and does **not** provide cyclone trajectory predictions.
 
 ---
@@ -325,7 +325,7 @@ This repository strictly adheres to physical oceanography conventions and SIH 20
 
 - **Pan-Indian Ocean Scaling:** Extend temporal synchronization to multi-year coverage ($2018\text{--}2024$) across the complete North Indian Ocean ($5^\circ - 30^\circ\text{N}, 45^\circ - 105^\circ\text{E}$).
 - **Physical Mixed-Layer Constraints:** Incorporate mixed-layer depth (MLD) physical loss penalties to eliminate the surface cold bias.
-- **Live Satellite Streaming:** Connect real-time Copernicus Marine (CMEMS) and NASA PO.DAAC automated ingestion pipelines for near-real-time subsurface diagnostic maps.
+- **Automated Pipeline Integration:** Connect automated Copernicus Marine (CMEMS) and NASA PO.DAAC ingestion pipelines for streamlined diagnostic evaluation.
 
 ---
 
